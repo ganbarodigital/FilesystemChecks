@@ -49,7 +49,7 @@ use GanbaroDigital\DataContainers\LazyValueObject;
  * @method string getFileOrFolderPath()
  * @method void   setFileOrFolderPath(string $path)
  */
-class FilesystemPathData implements LazyValueObject
+class FilesystemPathData extends LazyValueObject
 {
 	public function __construct($fileOrFolderPath)
 	{
