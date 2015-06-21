@@ -57,7 +57,7 @@ class FilesystemPathData extends LazyValueObject
 		$this->setFileOrFolderPath($fileOrFolderPath);
 	}
 
-	public function __string()
+	public function __toString()
 	{
 		if (!$this->hasFileOrFolderPath()) {
 			return null;
