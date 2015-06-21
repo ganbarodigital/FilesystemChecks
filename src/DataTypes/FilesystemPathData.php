@@ -46,8 +46,9 @@ namespace GanbaroDigital\Filesystem\DataTypes;
 use GanbaroDigital\DataContainers\LazyValueObject;
 
 /**
- * @method string getFileOrFolderPath()
- * @method void   setFileOrFolderPath(string $path)
+ * @method string  getFileOrFolderPath()
+ * @method boolean hasFileOrFolderPath()
+ * @method void    setFileOrFolderPath(string $path)
  */
 class FilesystemPathData extends LazyValueObject
 {
