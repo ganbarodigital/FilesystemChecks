@@ -59,7 +59,7 @@ class IsReadableFile implements FilesystemPathCheck
 	 */
 	static public function checkFilesystemPathData(FilesystemPathData $fsData)
 	{
-		$path = $fsData->getFileOrFolderPath();
+		$path = (string)$fsData;
 		if (!is_readable($path)) {
 			return false;
 		}
