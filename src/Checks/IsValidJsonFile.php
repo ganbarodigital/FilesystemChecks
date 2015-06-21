@@ -58,7 +58,7 @@ class IsValidJsonFile implements FilesystemPathCheck
 	 */
 	static public function checkFilesystemPathData(FilesystemPathData $fsData)
 	{
-		$filename = $fsData->getFileOrFolderPath();
+		$filename = (string)$fsData;
 
 		if (!is_file($filename)) {
 			return false;
