@@ -48,6 +48,21 @@ use GanbaroDigital\Filesystem\DataTypes\FilesystemPathData;
 class IsValidJsonFile implements FilesystemPathCheck
 {
 	/**
+	 * is the given filesystem path datapointing at valid JSON?
+	 *
+	 * @param  string $filename
+	 *         the filesystem path to inspect
+	 * @return boolean
+	 *         TRUE if the file is valid JSON
+	 *         FALSE otherwise
+	 */
+	static public function checkFilesystemPathData(FilesystemPathData $fsData)
+	{
+		$filename = (string)$fsData;
+		return self::checkFilename($filename);
+	}
+
+	/**
 	 * is the given filename pointing at valid JSON?
 	 *
 	 * @param  string $filename
@@ -56,10 +71,8 @@ class IsValidJsonFile implements FilesystemPathCheck
 	 *         TRUE if the file is valid JSON
 	 *         FALSE otherwise
 	 */
-	static public function checkFilesystemPathData(FilesystemPathData $fsData)
+	static public function checkFilename($filename)
 	{
-		$filename = (string)$fsData;
-
 		if (!is_file($filename)) {
 			return false;
 		}
