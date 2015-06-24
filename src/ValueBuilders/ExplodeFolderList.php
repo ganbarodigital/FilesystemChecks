@@ -70,7 +70,6 @@ class ExplodeFolderList
         // what happened?
         $filenames = [];
         foreach ($regIter as $match) {
-            var_dump($match[0]);
             // skip over . and ..
             $endOfMatch = basename($match[0]);
             if (($endOfMatch === '.' && $match[0] !== '.') || $endOfMatch === '..') {
