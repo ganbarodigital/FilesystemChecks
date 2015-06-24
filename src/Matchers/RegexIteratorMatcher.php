@@ -34,21 +34,21 @@
  * POSSIBILITY OF SUCH DAMAGE.
  *
  * @category  Libraries
- * @package   Filesystem/Filters
+ * @package   Filesystem/Matchers
  * @author    Stuart Herbert <stuherbert@ganbarodigital.com>
  * @copyright 2015-present Ganbaro Digital Ltd www.ganbarodigital.com
  * @license   http://www.opensource.org/licenses/bsd-license.php  BSD License
  * @link      http://code.ganbarodigital.com/php-file-system
  */
 
-namespace GanbaroDigital\Filesystem\Filters;
+namespace GanbaroDigital\Filesystem\Matchers;
 
 use GanbaroDigital\Filesystem\Checks\IsFolder;
 use GanbaroDigital\Filesystem\DataTypes\FilesystemPathData;
 
 use RegexIterator;
 
-interface RegexIteratorFilter
+interface RegexIteratorMatcher
 {
     /**
      * find a subset of results from a RegexIterator's results

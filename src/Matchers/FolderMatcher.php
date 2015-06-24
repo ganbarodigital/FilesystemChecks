@@ -34,24 +34,24 @@
  * POSSIBILITY OF SUCH DAMAGE.
  *
  * @category  Libraries
- * @package   Filesystem/Filters
+ * @package   Filesystem/Matchers
  * @author    Stuart Herbert <stuherbert@ganbarodigital.com>
  * @copyright 2015-present Ganbaro Digital Ltd www.ganbarodigital.com
  * @license   http://www.opensource.org/licenses/bsd-license.php  BSD License
  * @link      http://code.ganbarodigital.com/php-file-system
  */
 
-namespace GanbaroDigital\Filesystem\Filters;
+namespace GanbaroDigital\Filesystem\Matchers;
 
 use GanbaroDigital\Filesystem\Checks\IsFolder;
 use GanbaroDigital\Filesystem\DataTypes\FilesystemPathData;
 
 use RegexIterator;
 
-class FileFilter implements RegexIteratorFilter
+class FolderMatcher implements RegexIteratorMatcher
 {
     /**
-     * find the files in the result set from a RegexIterator
+     * find the folders in the result set from a RegexIterator
      *
      * @param  RegexIterator $iter
      *         the iterator to filter on
@@ -60,7 +60,7 @@ class FileFilter implements RegexIteratorFilter
     public static function fromRegexIterator(RegexIterator $iter)
     {
         foreach ($iter as $match) {
-            if (IsFile::checkFilename($match[0])) {
+            if (IsFolder::checkFilename($match[0])) {
                 yield($match[0]);
             }
         }

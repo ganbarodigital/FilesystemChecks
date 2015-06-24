@@ -64,13 +64,13 @@ class FolderToMatchedFilteredFilenames
      *         the folder to look inside
      * @param  string $pattern
      *         the regex to match
-     * @param  callable $filter
-     *         the filter to apply to the RegexIterator results
+     * @param  string $matcher
+     *         class name of the matcher to apply to the RegexIterator results
      * @return array<string>
      *         a list of the matching files / folders found
      *         will be empty if no matches found
      */
-    public static function fromFilesystemPathData(FilesystemPathData $fsData, $pattern, $filter)
+    public static function fromFilesystemPathData(FilesystemPathData $fsData, $pattern, $matcher)
     {
         // make sure we have a folder
         if (!IsFolder::checkFilesystemPathData($fsData)) {
@@ -83,7 +83,7 @@ class FolderToMatchedFilteredFilenames
         $regIter = SplFolderIterator::fromFilesystemPathData($fsData, $pattern);
 
         // what happened?
-        $filenames = iterator_to_array(call_user_func_array([$filter, 'fromRegexIterator'], [$regIter]));
+        $filenames = iterator_to_array(call_user_func_array([$matcher, 'fromRegexIterator'], [$regIter]));
 
         // let's get the list into some semblance of order
         sort($filenames);
