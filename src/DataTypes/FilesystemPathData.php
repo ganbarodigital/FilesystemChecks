@@ -55,6 +55,7 @@ class FilesystemPathData extends LazyValueObject
     public function __construct($fileOrFolderPath)
     {
         $this->setFileOrFolderPath($fileOrFolderPath);
+        $this->makeReadOnly();
     }
 
     public function __toString()
