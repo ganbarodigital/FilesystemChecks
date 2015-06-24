@@ -46,7 +46,7 @@ namespace GanbaroDigital\Filesystem\ValueBuilders;
 use GanbaroDigital\Filesystem\DataTypes\FilesystemPathData;
 use GanbaroDigital\Filesystem\Matchers\MatchesFolders;
 
-class ExplodeFolderList
+class MatchingFolders
 {
     /**
      * return a list of matching folders inside a given folder
@@ -59,9 +59,9 @@ class ExplodeFolderList
      *         a list of the folders found
      *         will be empty if no folders found
      */
-    public static function fromFilesystemPathData(FilesystemPathData $fsData, $pattern = FolderToMatchedFilteredFilenames::PATTERN_MATCH_ALL)
+    public static function fromFilesystemPathData(FilesystemPathData $fsData, $pattern = MatchingFilteredFilenames::PATTERN_MATCH_ALL)
     {
-        return FolderToMatchedFilteredFilenames::fromFilesystemPathData(
+        return MatchingFilteredFilenames::fromFilesystemPathData(
             $fsData, $pattern, MatchesFolders::class
         );
     }

@@ -43,52 +43,26 @@
 
 namespace GanbaroDigital\Filesystem\ValueBuilders;
 
-use FilesystemIterator;
-use RecursiveDirectoryIterator;
-use RecursiveIteratorIterator;
-use RecursiveRegexIterator;
-use RegexIterator;
-
-use GanbaroDigital\Filesystem\Checks\IsFolder;
 use GanbaroDigital\Filesystem\DataTypes\FilesystemPathData;
-use GanbaroDigital\Filesystem\Iterators\SplFolderIterator;
+use GanbaroDigital\Filesystem\Matchers\MatchesFiles;
 
-class FolderToMatchedFilteredFilenames
+class MatchingFiles
 {
-    const PATTERN_MATCH_ALL = '.+';
-
     /**
-     * return a list of matching files and / or folders inside a given folder
+     * return a list of files from a folder and its sub-folders
      *
      * @param  FilesystemPathData $fsData
      *         the folder to look inside
-     * @param  string $pattern
-     *         the regex to match
-     * @param  string $matcher
-     *         class name of the matcher to apply to the RegexIterator results
+     * @param  string             $pattern
+     *         regex pattern to match
      * @return array<string>
-     *         a list of the matching files / folders found
-     *         will be empty if no matches found
+     *         a list of matching files
+     *         empty if no matching files found
      */
-    public static function fromFilesystemPathData(FilesystemPathData $fsData, $pattern, $matcher)
+    public static function fromFilesystemPathData(FilesystemPathData $fsData, $pattern = MatchingFilteredFilenames::PATTERN_MATCH_ALL)
     {
-        // make sure we have a folder
-        if (!IsFolder::checkFilesystemPathData($fsData)) {
-            return [];
-        }
-
-        // at this point, we are happy that we have a folder
-        //
-        // let's find out what's in it
-        $regIter = SplFolderIterator::fromFilesystemPathData($fsData, $pattern);
-
-        // what happened?
-        $filenames = iterator_to_array(call_user_func_array([$matcher, 'fromRegexIterator'], [$regIter]));
-
-        // let's get the list into some semblance of order
-        sort($filenames);
-
-        // all done
-        return $filenames;
+        return MatchingFilteredFilenames::fromFilesystemPathData(
+            $fsData, $pattern, MatchesFiles::class
+        );
     }
 }
