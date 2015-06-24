@@ -50,13 +50,13 @@ class IsValidJsonFile implements FilesystemPathCheck
 	/**
 	 * is the given filesystem path datapointing at valid JSON?
 	 *
-	 * @param  string $filename
+	 * @param  FilesystemPathData $fsData
 	 *         the filesystem path to inspect
 	 * @return boolean
 	 *         TRUE if the file is valid JSON
 	 *         FALSE otherwise
 	 */
-	static public function checkFilesystemPathData(FilesystemPathData $fsData)
+	public static function checkFilesystemPathData(FilesystemPathData $fsData)
 	{
 		$filename = (string)$fsData;
 		return self::checkFilename($filename);
@@ -71,7 +71,7 @@ class IsValidJsonFile implements FilesystemPathCheck
 	 *         TRUE if the file is valid JSON
 	 *         FALSE otherwise
 	 */
-	static public function checkFilename($filename)
+	public static function checkFilename($filename)
 	{
 		if (!is_file($filename)) {
 			return false;

@@ -57,5 +57,5 @@ interface FilesystemPathCheck
 	 *         TRUE if the filesystem data meets the requirements
 	 *         FALSE otherwise
 	 */
-	static public function checkFilesystemPathData(FilesystemPathData $fsData);
+	public static function checkFilesystemPathData(FilesystemPathData $fsData);
 }

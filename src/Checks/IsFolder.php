@@ -57,7 +57,7 @@ class IsFolder implements FilesystemPathCheck
 	 *         TRUE if the filesystem data meets the requirements
 	 *         FALSE otherwise
 	 */
-	static public function checkFilesystemPathData(FilesystemPathData $fsData)
+	public static function checkFilesystemPathData(FilesystemPathData $fsData)
 	{
 		$path = $fsData->getFileOrFolderPath();
 		if (!is_dir($path)) {
@@ -77,7 +77,7 @@ class IsFolder implements FilesystemPathCheck
 	 *         TRUE if the filename is a folder
 	 *         FALSE otherwise
 	 */
-	static public function checkFilename($filename)
+	public static function checkFilename($filename)
 	{
 		if (!is_dir($filename)) {
 			return false;

@@ -57,10 +57,10 @@ class IsReadableFile implements FilesystemPathCheck
 	 *         TRUE if the filesystem data meets the requirements
 	 *         FALSE otherwise
 	 */
-	static public function checkFilesystemPathData(FilesystemPathData $fsData)
+	public static function checkFilesystemPathData(FilesystemPathData $fsData)
 	{
 		$path = (string)$fsData;
-		return self::checkPathToFile($path);
+		return self::checkFilename($path);
 	}
 
 	/**
@@ -72,7 +72,7 @@ class IsReadableFile implements FilesystemPathCheck
 	 *         TRUE if the path is a readable file on disk
 	 *         FALSE otherwise
 	 */
-	static public function checkFilename($path)
+	public static function checkFilename($path)
 	{
 		if (!is_readable($path)) {
 			return false;

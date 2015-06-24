@@ -53,7 +53,18 @@ use GanbaroDigital\Filesystem\DataTypes\FilesystemPathData;
 
 class FolderToMatchingFiles
 {
-	static public function fromFilesystemPathData(FilesystemPathData $fsData, $pattern = ".+")
+    /**
+     * return a list of files from a folder and its sub-folders
+     *
+     * @param  FilesystemPathData $fsData
+     *         the folder to look inside
+     * @param  string             $pattern
+     *         regex pattern to match
+     * @return array<string>
+     *         a list of matching files
+     *         empty if no matching files found
+     */
+	public static function fromFilesystemPathData(FilesystemPathData $fsData, $pattern = ".+")
 	{
 		// make sure we have a folder
 		if (!IsFolder::checkFilesystemPathData($fsData)) {
