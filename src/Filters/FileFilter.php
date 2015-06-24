@@ -55,7 +55,7 @@ class FileFilter implements RegexIteratorFilter
      *
      * @param  RegexIterator $iter
      *         the iterator to filter on
-     * @return \Generator
+     * @return \Iterator
      */
     public static function fromRegexIterator(RegexIterator $iter)
     {

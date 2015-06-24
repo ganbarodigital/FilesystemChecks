@@ -75,7 +75,7 @@ class SplFolderIterator
      *         regex pattern to match
      * @param  int $flags
      *         the FilesystemIterator flags to use
-     * @return RegexIter
+     * @return RegexIterator
      *         iterate over this to get the matches
      */
     public static function fromFilesystemPathData(FilesystemPathData $fsData, $pattern = ".+", $flags = self::DEFAULT_FLAGS)
