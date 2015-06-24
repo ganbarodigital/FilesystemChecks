@@ -43,26 +43,50 @@
 
 namespace GanbaroDigital\Filesystem\ValueBuilders;
 
-use GanbaroDigital\Filesystem\DataTypes\FilesystemPathData;
-use GanbaroDigital\Filesystem\Filters\FileFilter;
+use FilesystemIterator;
+use RecursiveDirectoryIterator;
+use RecursiveIteratorIterator;
+use RecursiveRegexIterator;
+use RegexIterator;
 
-class FolderToMatchingFiles
+use GanbaroDigital\Filesystem\Checks\IsFolder;
+use GanbaroDigital\Filesystem\DataTypes\FilesystemPathData;
+use GanbaroDigital\Filesystem\Iterators\SplFolderIterator;
+
+class FolderToMatchedFilteredFilenames
 {
     /**
-     * return a list of files from a folder and its sub-folders
+     * return a list of matching files and / or folders inside a given folder
      *
      * @param  FilesystemPathData $fsData
      *         the folder to look inside
-     * @param  string             $pattern
-     *         regex pattern to match
+     * @param  string $pattern
+     *         the regex to match
+     * @param  callable $filter
+     *         the filter to apply to the RegexIterator results
      * @return array<string>
-     *         a list of matching files
-     *         empty if no matching files found
+     *         a list of the matching files / folders found
+     *         will be empty if no matches found
      */
-    public static function fromFilesystemPathData(FilesystemPathData $fsData, $pattern = ".+")
+    public static function fromFilesystemPathData(FilesystemPathData $fsData, $pattern = ".+", $filter)
     {
-        return FolderToMatchedFilteredFilenames::fromFilesystemPathData(
-            $fsData, $pattern, FileFilter::class
-        );
+        // make sure we have a folder
+        if (!IsFolder::checkFilesystemPathData($fsData)) {
+            return [];
+        }
+
+        // at this point, we are happy that we have a folder
+        //
+        // let's find out what's in it
+        $regIter = SplFolderIterator::fromFilesystemPathData($fsData, $pattern);
+
+        // what happened?
+        $filenames = iterator_to_array(call_user_func_array([$filter, 'fromRegexIterator'],[$regIter]));
+
+        // let's get the list into some semblance of order
+        sort($filenames);
+
+        // all done
+        return $filenames;
     }
 }

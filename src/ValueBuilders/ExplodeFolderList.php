@@ -43,16 +43,8 @@
 
 namespace GanbaroDigital\Filesystem\ValueBuilders;
 
-use FilesystemIterator;
-use RecursiveDirectoryIterator;
-use RecursiveIteratorIterator;
-use RecursiveRegexIterator;
-use RegexIterator;
-
-use GanbaroDigital\Filesystem\Checks\IsFolder;
 use GanbaroDigital\Filesystem\DataTypes\FilesystemPathData;
 use GanbaroDigital\Filesystem\Filters\FolderFilter;
-use GanbaroDigital\Filesystem\Iterators\SplFolderIterator;
 
 class ExplodeFolderList
 {
@@ -69,23 +61,8 @@ class ExplodeFolderList
      */
     public static function fromFilesystemPathData(FilesystemPathData $fsData, $pattern = ".+")
     {
-        // make sure we have a folder
-        if (!IsFolder::checkFilesystemPathData($fsData)) {
-            return [];
-        }
-
-        // at this point, we are happy that we have a folder
-        //
-        // let's find out what's in it
-        $regIter = SplFolderIterator::fromFilesystemPathData($fsData, $pattern);
-
-        // what happened?
-        $filenames = iterator_to_array(FolderFilter::fromRegexIterator($regIter));
-
-        // let's get the list into some semblance of order
-        sort($filenames);
-
-        // all done
-        return $filenames;
+        return FolderToMatchedFilteredFilenames::fromFilesystemPathData(
+            $fsData, $pattern, FolderFilter::class
+        );
     }
 }
