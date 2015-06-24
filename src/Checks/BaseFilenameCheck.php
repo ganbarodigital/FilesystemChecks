@@ -45,7 +45,7 @@ namespace GanbaroDigital\Filesystem\Checks;
 
 use GanbaroDigital\Filesystem\DataTypes\FilesystemPathData;
 
-abstract class BaseFilenameCheck implements FilesystemPathCheck
+class BaseFilenameCheck implements FilesystemPathCheck
 {
     /**
      * does the provided filesystem path data meet the requirements for this
