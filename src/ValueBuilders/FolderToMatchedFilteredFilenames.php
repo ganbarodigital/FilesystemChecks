@@ -81,7 +81,7 @@ class FolderToMatchedFilteredFilenames
         $regIter = SplFolderIterator::fromFilesystemPathData($fsData, $pattern);
 
         // what happened?
-        $filenames = iterator_to_array(call_user_func_array([$filter, 'fromRegexIterator'],[$regIter]));
+        $filenames = iterator_to_array(call_user_func_array([$filter, 'fromRegexIterator'], [$regIter]));
 
         // let's get the list into some semblance of order
         sort($filenames);

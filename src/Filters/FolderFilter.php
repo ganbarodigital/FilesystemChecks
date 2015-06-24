@@ -48,7 +48,7 @@ use GanbaroDigital\Filesystem\DataTypes\FilesystemPathData;
 
 use RegexIterator;
 
-class FolderFilter  implements RegexIteratorFilter
+class FolderFilter implements RegexIteratorFilter
 {
     /**
      * find the folders in the result set from a RegexIterator
