@@ -67,4 +67,22 @@ class IsFolder implements FilesystemPathCheck
 		// if we get here, then we are happy
 		return true;
 	}
+
+	/**
+	 * is the filename actually a folder?
+	 *
+	 * @param  string $filename
+	 *         the filename to check
+	 * @return boolean
+	 *         TRUE if the filename is a folder
+	 *         FALSE otherwise
+	 */
+	static public function checkFilename($filename)
+	{
+		if (!is_dir($filename)) {
+			return false;
+		}
+
+		return true;
+	}
 }
