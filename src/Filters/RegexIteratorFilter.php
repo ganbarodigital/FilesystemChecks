@@ -48,21 +48,14 @@ use GanbaroDigital\Filesystem\DataTypes\FilesystemPathData;
 
 use RegexIterator;
 
-class FileFilter implements RegexIteratorFilter
+interface RegexIteratorFilter
 {
     /**
-     * find the files in the result set from a RegexIterator
+     * find a subset of results from a RegexIterator's results
      *
      * @param  RegexIterator $iter
      *         the iterator to filter on
-     * @return \Generator
+     * @return \Iterator
      */
-    public static function fromRegexIterator(RegexIterator $iter)
-    {
-        foreach ($iter as $match) {
-            if (IsFile::checkFilename($match[0])) {
-                yield($match[0]);
-            }
-        }
-    }
+    public static function fromRegexIterator(RegexIterator $iter);
 }
