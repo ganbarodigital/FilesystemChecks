@@ -48,10 +48,10 @@ use GanbaroDigital\Filesystem\DataTypes\FilesystemPathData;
 
 use RegexIterator;
 
-class FileMatcher implements RegexIteratorMatcher
+class MatchesFolders implements RegexIteratorMatcher
 {
     /**
-     * find the files in the result set from a RegexIterator
+     * find the folders in the result set from a RegexIterator
      *
      * @param  RegexIterator $iter
      *         the iterator to filter on
@@ -60,7 +60,7 @@ class FileMatcher implements RegexIteratorMatcher
     public static function fromRegexIterator(RegexIterator $iter)
     {
         foreach ($iter as $match) {
-            if (IsFile::checkFilename($match[0])) {
+            if (IsFolder::checkFilename($match[0])) {
                 yield($match[0]);
             }
         }

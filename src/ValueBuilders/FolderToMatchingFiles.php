@@ -44,7 +44,7 @@
 namespace GanbaroDigital\Filesystem\ValueBuilders;
 
 use GanbaroDigital\Filesystem\DataTypes\FilesystemPathData;
-use GanbaroDigital\Filesystem\Matchers\FileMatcher;
+use GanbaroDigital\Filesystem\Matchers\MatchesFiles;
 
 class FolderToMatchingFiles
 {
@@ -62,7 +62,7 @@ class FolderToMatchingFiles
     public static function fromFilesystemPathData(FilesystemPathData $fsData, $pattern = FolderToMatchedFilteredFilenames::PATTERN_MATCH_ALL)
     {
         return FolderToMatchedFilteredFilenames::fromFilesystemPathData(
-            $fsData, $pattern, FileMatcher::class
+            $fsData, $pattern, MatchesFiles::class
         );
     }
 }
