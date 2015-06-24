@@ -59,7 +59,7 @@ class FolderToMatchingFiles
      *         a list of matching files
      *         empty if no matching files found
      */
-    public static function fromFilesystemPathData(FilesystemPathData $fsData, $pattern = ".+")
+    public static function fromFilesystemPathData(FilesystemPathData $fsData, $pattern = FolderToMatchedFilteredFilenames::PATTERN_MATCH_ALL)
     {
         return FolderToMatchedFilteredFilenames::fromFilesystemPathData(
             $fsData, $pattern, FileFilter::class

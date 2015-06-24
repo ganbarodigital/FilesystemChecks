@@ -59,7 +59,7 @@ class ExplodeFolderList
      *         a list of the folders found
      *         will be empty if no folders found
      */
-    public static function fromFilesystemPathData(FilesystemPathData $fsData, $pattern = ".+")
+    public static function fromFilesystemPathData(FilesystemPathData $fsData, $pattern = FolderToMatchedFilteredFilenames::PATTERN_MATCH_ALL)
     {
         return FolderToMatchedFilteredFilenames::fromFilesystemPathData(
             $fsData, $pattern, FolderFilter::class

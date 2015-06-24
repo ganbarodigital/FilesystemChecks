@@ -55,6 +55,8 @@ use GanbaroDigital\Filesystem\Iterators\SplFolderIterator;
 
 class FolderToMatchedFilteredFilenames
 {
+    const PATTERN_MATCH_ALL = '.+';
+
     /**
      * return a list of matching files and / or folders inside a given folder
      *
@@ -68,7 +70,7 @@ class FolderToMatchedFilteredFilenames
      *         a list of the matching files / folders found
      *         will be empty if no matches found
      */
-    public static function fromFilesystemPathData(FilesystemPathData $fsData, $pattern = ".+", $filter)
+    public static function fromFilesystemPathData(FilesystemPathData $fsData, $pattern, $filter)
     {
         // make sure we have a folder
         if (!IsFolder::checkFilesystemPathData($fsData)) {
