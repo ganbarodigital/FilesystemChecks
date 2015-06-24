@@ -51,6 +51,8 @@ use RegexIterator;
 
 use GanbaroDigital\Filesystem\Checks\IsFolder;
 use GanbaroDigital\Filesystem\DataTypes\FilesystemPathData;
+use GanbaroDigital\Filesystem\Filters\FolderFilter;
+use GanbaroDigital\Filesystem\Iterators\SplFolderIterator;
 
 class ExplodeFolderList
 {
@@ -73,26 +75,12 @@ class ExplodeFolderList
         }
 
         // at this point, we are happy that we have a folder
-        $directory = (string)$fsData;
-
-        $dirIterFlags = FilesystemIterator::KEY_AS_PATHNAME
-                        | FilesystemIterator::CURRENT_AS_FILEINFO
-                        | FilesystemIterator::SKIP_DOTS;
-        $dirIter = new RecursiveDirectoryIterator($directory, $dirIterFlags);
-        $recIter = new RecursiveIteratorIterator($dirIter, RecursiveIteratorIterator::SELF_FIRST);
-        $regIter = new RegexIterator($recIter, '|^.+' . $pattern . '$|i', RegexIterator::GET_MATCH);
+        //
+        // let's find out what's in it
+        $regIter = SplFolderIterator::fromFilesystemPathData($fsData, $pattern);
 
         // what happened?
-        $filenames = [];
-        foreach ($regIter as $match) {
-            // skip over anything that isn't a folder
-            if (!IsFolder::checkFilename($match[0])) {
-                continue;
-            }
-
-            // if we get here, then we are happy
-            $filenames[] = $match[0];
-        }
+        $filenames = iterator_to_array(FolderFilter::fromRegexIterator($regIter));
 
         // let's get the list into some semblance of order
         sort($filenames);

@@ -50,6 +50,8 @@ use RegexIterator;
 
 use GanbaroDigital\Filesystem\Checks\IsFolder;
 use GanbaroDigital\Filesystem\DataTypes\FilesystemPathData;
+use GanbaroDigital\Filesystem\Filters\FileFiler;
+use GanbaroDigital\Filesystem\Iterators\SplFolderIterator;
 
 class FolderToMatchingFiles
 {
@@ -72,17 +74,13 @@ class FolderToMatchingFiles
         }
 
         // at this point, we are happy that we have a folder
-        $directory = (string)$fsData;
-
-        $dirIter = new RecursiveDirectoryIterator($directory);
-        $recIter = new RecursiveIteratorIterator($dirIter);
-        $regIter = new RegexIterator($recIter, '|^.+' . $pattern . '$|i', RegexIterator::GET_MATCH);
+        //
+        // let's find out what's in it
+        $regIter = SplFolderIterator::fromFilesystemPathData($fsData, $pattern);
 
         // what happened?
-        $filenames = [];
-        foreach ($regIter as $match) {
-            $filenames[] = $match[0];
-        }
+        // what happened?
+        $filenames = iterator_to_array(FileFilter::fromRegexIterator($regIter));
 
         // let's get the list into some semblance of order
         sort($filenames);
