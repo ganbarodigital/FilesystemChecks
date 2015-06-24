@@ -43,6 +43,7 @@
 
 namespace GanbaroDigital\Filesystem\ValueBuilders;
 
+use FilesystemIterator;
 use RecursiveDirectoryIterator;
 use RecursiveIteratorIterator;
 use RecursiveRegexIterator;
@@ -74,19 +75,16 @@ class ExplodeFolderList
         // at this point, we are happy that we have a folder
         $directory = (string)$fsData;
 
-        $dirIter = new RecursiveDirectoryIterator($directory);
+        $dirIterFlags = FilesystemIterator::KEY_AS_PATHNAME
+                        | FilesystemIterator::CURRENT_AS_FILEINFO
+                        | FilesystemIterator::SKIP_DOTS;
+        $dirIter = new RecursiveDirectoryIterator($directory, $dirIterFlags);
         $recIter = new RecursiveIteratorIterator($dirIter, RecursiveIteratorIterator::SELF_FIRST);
         $regIter = new RegexIterator($recIter, '|^.+' . $pattern . '$|i', RegexIterator::GET_MATCH);
 
         // what happened?
         $filenames = [];
         foreach ($regIter as $match) {
-            // skip over . and ..
-            $endOfMatch = basename($match[0]);
-            if (($endOfMatch === '.' && $match[0] !== '.') || $endOfMatch === '..') {
-                continue;
-            }
-
             // skip over anything that isn't a folder
             if (!IsFolder::checkFilename($match[0])) {
                 continue;
