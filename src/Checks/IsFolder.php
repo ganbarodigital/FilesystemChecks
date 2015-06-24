@@ -43,31 +43,8 @@
 
 namespace GanbaroDigital\Filesystem\Checks;
 
-use GanbaroDigital\Filesystem\DataTypes\FilesystemPathData;
-
-class IsFolder implements FilesystemPathCheck
+class IsFolder extends BaseFilenameCheck
 {
-    /**
-     * does the provided filesystem data meet the requirements for this
-     * specification?
-     *
-     * @param  FilesystemPathData $fsData
-     *         the data to inspect
-     * @return boolean
-     *         TRUE if the filesystem data meets the requirements
-     *         FALSE otherwise
-     */
-    public static function checkFilesystemPathData(FilesystemPathData $fsData)
-    {
-        $path = $fsData->getFileOrFolderPath();
-        if (!is_dir($path)) {
-            return false;
-        }
-
-        // if we get here, then we are happy
-        return true;
-    }
-
     /**
      * is the filename actually a folder?
      *

@@ -43,33 +43,15 @@
 
 namespace GanbaroDigital\Filesystem\Checks;
 
-use GanbaroDigital\Filesystem\DataTypes\FilesystemPathData;
-
-class IsFile implements FilesystemPathCheck
+class IsFile extends BaseFilenameCheck
 {
     /**
-     * does the provided filesystem data meet the requirements for this
-     * specification?
-     *
-     * @param  FilesystemPathData $fsData
-     *         the data to inspect
-     * @return boolean
-     *         TRUE if the filesystem data meets the requirements
-     *         FALSE otherwise
-     */
-    public static function checkFilesystemPathData(FilesystemPathData $fsData)
-    {
-        $path = (string)$fsData;
-        return self::checkFilename($path);
-    }
-
-    /**
-     * is the path a readable file on disk?
+     * is the path a file on disk?
      *
      * @param  string $path
      *         path to the file to check
      * @return boolean
-     *         TRUE if the path is a readable file on disk
+     *         TRUE if the path is a file on disk
      *         FALSE otherwise
      */
     public static function checkFilename($path)
