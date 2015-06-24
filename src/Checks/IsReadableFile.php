@@ -47,38 +47,38 @@ use GanbaroDigital\Filesystem\DataTypes\FilesystemPathData;
 
 class IsReadableFile implements FilesystemPathCheck
 {
-	/**
-	 * does the provided filesystem data meet the requirements for this
-	 * specification?
-	 *
-	 * @param  FilesystemPathData $fsData
-	 *         the data to inspect
-	 * @return boolean
-	 *         TRUE if the filesystem data meets the requirements
-	 *         FALSE otherwise
-	 */
-	public static function checkFilesystemPathData(FilesystemPathData $fsData)
-	{
-		$path = (string)$fsData;
-		return self::checkFilename($path);
-	}
+    /**
+     * does the provided filesystem data meet the requirements for this
+     * specification?
+     *
+     * @param  FilesystemPathData $fsData
+     *         the data to inspect
+     * @return boolean
+     *         TRUE if the filesystem data meets the requirements
+     *         FALSE otherwise
+     */
+    public static function checkFilesystemPathData(FilesystemPathData $fsData)
+    {
+        $path = (string)$fsData;
+        return self::checkFilename($path);
+    }
 
-	/**
-	 * is the path a readable file on disk?
-	 *
-	 * @param  string $path
-	 *         path to the file to check
-	 * @return boolean
-	 *         TRUE if the path is a readable file on disk
-	 *         FALSE otherwise
-	 */
-	public static function checkFilename($path)
-	{
-		if (!is_readable($path)) {
-			return false;
-		}
+    /**
+     * is the path a readable file on disk?
+     *
+     * @param  string $path
+     *         path to the file to check
+     * @return boolean
+     *         TRUE if the path is a readable file on disk
+     *         FALSE otherwise
+     */
+    public static function checkFilename($path)
+    {
+        if (!is_readable($path)) {
+            return false;
+        }
 
-		// if we get here, then we are happy
-		return true;
-	}
+        // if we get here, then we are happy
+        return true;
+    }
 }

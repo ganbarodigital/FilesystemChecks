@@ -47,46 +47,46 @@ use GanbaroDigital\Filesystem\DataTypes\FilesystemPathData;
 
 class IsValidJsonFile implements FilesystemPathCheck
 {
-	/**
-	 * is the given filesystem path datapointing at valid JSON?
-	 *
-	 * @param  FilesystemPathData $fsData
-	 *         the filesystem path to inspect
-	 * @return boolean
-	 *         TRUE if the file is valid JSON
-	 *         FALSE otherwise
-	 */
-	public static function checkFilesystemPathData(FilesystemPathData $fsData)
-	{
-		$filename = (string)$fsData;
-		return self::checkFilename($filename);
-	}
+    /**
+     * is the given filesystem path datapointing at valid JSON?
+     *
+     * @param  FilesystemPathData $fsData
+     *         the filesystem path to inspect
+     * @return boolean
+     *         TRUE if the file is valid JSON
+     *         FALSE otherwise
+     */
+    public static function checkFilesystemPathData(FilesystemPathData $fsData)
+    {
+        $filename = (string)$fsData;
+        return self::checkFilename($filename);
+    }
 
-	/**
-	 * is the given filename pointing at valid JSON?
-	 *
-	 * @param  string $filename
-	 *         the filename to inspect
-	 * @return boolean
-	 *         TRUE if the file is valid JSON
-	 *         FALSE otherwise
-	 */
-	public static function checkFilename($filename)
-	{
-		if (!is_file($filename)) {
-			return false;
-		}
+    /**
+     * is the given filename pointing at valid JSON?
+     *
+     * @param  string $filename
+     *         the filename to inspect
+     * @return boolean
+     *         TRUE if the file is valid JSON
+     *         FALSE otherwise
+     */
+    public static function checkFilename($filename)
+    {
+        if (!is_file($filename)) {
+            return false;
+        }
 
-		$contents = file_get_contents($filename);
-		if (empty($contents)) {
-			return false;
-		}
+        $contents = file_get_contents($filename);
+        if (empty($contents)) {
+            return false;
+        }
 
-		$payload = json_decode($contents);
-		if ($payload === null) {
-			return false;
-		}
+        $payload = json_decode($contents);
+        if ($payload === null) {
+            return false;
+        }
 
-		return true;
-	}
+        return true;
+    }
 }

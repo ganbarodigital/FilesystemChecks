@@ -52,17 +52,17 @@ use GanbaroDigital\DataContainers\LazyValueObject;
  */
 class FilesystemPathData extends LazyValueObject
 {
-	public function __construct($fileOrFolderPath)
-	{
-		$this->setFileOrFolderPath($fileOrFolderPath);
-	}
+    public function __construct($fileOrFolderPath)
+    {
+        $this->setFileOrFolderPath($fileOrFolderPath);
+    }
 
-	public function __toString()
-	{
-		if (!$this->hasFileOrFolderPath()) {
-			return '';
-		}
+    public function __toString()
+    {
+        if (!$this->hasFileOrFolderPath()) {
+            return '';
+        }
 
-		return $this->getFileOrFolderPath();
-	}
+        return $this->getFileOrFolderPath();
+    }
 }

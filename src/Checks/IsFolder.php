@@ -47,42 +47,42 @@ use GanbaroDigital\Filesystem\DataTypes\FilesystemPathData;
 
 class IsFolder implements FilesystemPathCheck
 {
-	/**
-	 * does the provided filesystem data meet the requirements for this
-	 * specification?
-	 *
-	 * @param  FilesystemPathData $fsData
-	 *         the data to inspect
-	 * @return boolean
-	 *         TRUE if the filesystem data meets the requirements
-	 *         FALSE otherwise
-	 */
-	public static function checkFilesystemPathData(FilesystemPathData $fsData)
-	{
-		$path = $fsData->getFileOrFolderPath();
-		if (!is_dir($path)) {
-			return false;
-		}
+    /**
+     * does the provided filesystem data meet the requirements for this
+     * specification?
+     *
+     * @param  FilesystemPathData $fsData
+     *         the data to inspect
+     * @return boolean
+     *         TRUE if the filesystem data meets the requirements
+     *         FALSE otherwise
+     */
+    public static function checkFilesystemPathData(FilesystemPathData $fsData)
+    {
+        $path = $fsData->getFileOrFolderPath();
+        if (!is_dir($path)) {
+            return false;
+        }
 
-		// if we get here, then we are happy
-		return true;
-	}
+        // if we get here, then we are happy
+        return true;
+    }
 
-	/**
-	 * is the filename actually a folder?
-	 *
-	 * @param  string $filename
-	 *         the filename to check
-	 * @return boolean
-	 *         TRUE if the filename is a folder
-	 *         FALSE otherwise
-	 */
-	public static function checkFilename($filename)
-	{
-		if (!is_dir($filename)) {
-			return false;
-		}
+    /**
+     * is the filename actually a folder?
+     *
+     * @param  string $filename
+     *         the filename to check
+     * @return boolean
+     *         TRUE if the filename is a folder
+     *         FALSE otherwise
+     */
+    public static function checkFilename($filename)
+    {
+        if (!is_dir($filename)) {
+            return false;
+        }
 
-		return true;
-	}
+        return true;
+    }
 }

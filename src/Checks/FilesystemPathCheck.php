@@ -47,15 +47,15 @@ use GanbaroDigital\Filesystem\DataTypes\FilesystemPathData;
 
 interface FilesystemPathCheck
 {
-	/**
-	 * does the provided filesystem data meet the requirements for this
-	 * specification?
-	 *
-	 * @param  FilesystemPathData $fsData
-	 *         the data to inspect
-	 * @return boolean
-	 *         TRUE if the filesystem data meets the requirements
-	 *         FALSE otherwise
-	 */
-	public static function checkFilesystemPathData(FilesystemPathData $fsData);
+    /**
+     * does the provided filesystem data meet the requirements for this
+     * specification?
+     *
+     * @param  FilesystemPathData $fsData
+     *         the data to inspect
+     * @return boolean
+     *         TRUE if the filesystem data meets the requirements
+     *         FALSE otherwise
+     */
+    public static function checkFilesystemPathData(FilesystemPathData $fsData);
 }

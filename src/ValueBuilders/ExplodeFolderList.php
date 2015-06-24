@@ -64,15 +64,15 @@ class ExplodeFolderList
      *         a list of the folders found
      *         will be empty if no folders found
      */
-	public static function fromFilesystemPathData(FilesystemPathData $fsData, $pattern = ".+")
-	{
-		// make sure we have a folder
-		if (!IsFolder::checkFilesystemPathData($fsData)) {
-			return [];
-		}
+    public static function fromFilesystemPathData(FilesystemPathData $fsData, $pattern = ".+")
+    {
+        // make sure we have a folder
+        if (!IsFolder::checkFilesystemPathData($fsData)) {
+            return [];
+        }
 
-		// at this point, we are happy that we have a folder
-		$directory = (string)$fsData;
+        // at this point, we are happy that we have a folder
+        $directory = (string)$fsData;
 
         $dirIter = new RecursiveDirectoryIterator($directory);
         $recIter = new RecursiveIteratorIterator($dirIter, RecursiveIteratorIterator::SELF_FIRST);
@@ -101,5 +101,5 @@ class ExplodeFolderList
 
         // all done
         return $filenames;
-	}
+    }
 }

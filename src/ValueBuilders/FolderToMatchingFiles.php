@@ -64,15 +64,15 @@ class FolderToMatchingFiles
      *         a list of matching files
      *         empty if no matching files found
      */
-	public static function fromFilesystemPathData(FilesystemPathData $fsData, $pattern = ".+")
-	{
-		// make sure we have a folder
-		if (!IsFolder::checkFilesystemPathData($fsData)) {
-			return [];
-		}
+    public static function fromFilesystemPathData(FilesystemPathData $fsData, $pattern = ".+")
+    {
+        // make sure we have a folder
+        if (!IsFolder::checkFilesystemPathData($fsData)) {
+            return [];
+        }
 
-		// at this point, we are happy that we have a folder
-		$directory = (string)$fsData;
+        // at this point, we are happy that we have a folder
+        $directory = (string)$fsData;
 
         $dirIter = new RecursiveDirectoryIterator($directory);
         $recIter = new RecursiveIteratorIterator($dirIter);
@@ -89,5 +89,5 @@ class FolderToMatchingFiles
 
         // all done
         return $filenames;
-	}
+    }
 }
