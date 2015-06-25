@@ -60,7 +60,7 @@ class MatchesFiles implements RegexIteratorMatcher
     public static function fromRegexIterator(RegexIterator $iter)
     {
         foreach ($iter as $match) {
-            if (IsFile::checkFilename($match[0])) {
+            if (IsFile::checkString($match[0])) {
                 yield($match[0]);
             }
         }

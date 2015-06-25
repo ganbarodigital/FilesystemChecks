@@ -60,7 +60,7 @@ class MatchesFolders implements RegexIteratorMatcher
     public static function fromRegexIterator(RegexIterator $iter)
     {
         foreach ($iter as $match) {
-            if (IsFolder::checkFilename($match[0])) {
+            if (IsFolder::checkString($match[0])) {
                 yield($match[0]);
             }
         }

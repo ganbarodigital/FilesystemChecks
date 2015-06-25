@@ -54,7 +54,7 @@ class IsReadableFile extends BaseFilenameCheck
      *         TRUE if the path is a readable file on disk
      *         FALSE otherwise
      */
-    public static function checkFilename($path)
+    public static function checkString($path)
     {
         if (!is_readable($path)) {
             return false;

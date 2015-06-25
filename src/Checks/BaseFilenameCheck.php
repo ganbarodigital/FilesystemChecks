@@ -60,7 +60,7 @@ class BaseFilenameCheck implements FilesystemPathCheck
     public static function checkFilesystemPathData(FilesystemPathData $fsData)
     {
         $path = (string)$fsData;
-        return static::checkFilename($path);
+        return static::checkString($path);
     }
 
     /**
@@ -72,7 +72,7 @@ class BaseFilenameCheck implements FilesystemPathCheck
      *         TRUE if the filename meets the requirements
      *         FALSE otherwise
      */
-    public static function checkFilename($path)
+    public static function checkString($path)
     {
         return false;
     }

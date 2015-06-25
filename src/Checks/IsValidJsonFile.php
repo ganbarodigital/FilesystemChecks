@@ -45,23 +45,8 @@ namespace GanbaroDigital\Filesystem\Checks;
 
 use GanbaroDigital\Filesystem\DataTypes\FilesystemPathData;
 
-class IsValidJsonFile implements FilesystemPathCheck
+class IsValidJsonFile extends BaseFilenameCheck
 {
-    /**
-     * is the given filesystem path datapointing at valid JSON?
-     *
-     * @param  FilesystemPathData $fsData
-     *         the filesystem path to inspect
-     * @return boolean
-     *         TRUE if the file is valid JSON
-     *         FALSE otherwise
-     */
-    public static function checkFilesystemPathData(FilesystemPathData $fsData)
-    {
-        $filename = (string)$fsData;
-        return self::checkFilename($filename);
-    }
-
     /**
      * is the given filename pointing at valid JSON?
      *
@@ -71,7 +56,7 @@ class IsValidJsonFile implements FilesystemPathCheck
      *         TRUE if the file is valid JSON
      *         FALSE otherwise
      */
-    public static function checkFilename($filename)
+    public static function checkString($filename)
     {
         if (!is_file($filename)) {
             return false;

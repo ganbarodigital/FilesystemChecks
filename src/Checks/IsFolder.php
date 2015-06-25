@@ -54,7 +54,7 @@ class IsFolder extends BaseFilenameCheck
      *         TRUE if the filename is a folder
      *         FALSE otherwise
      */
-    public static function checkFilename($filename)
+    public static function checkString($filename)
     {
         if (!is_dir($filename)) {
             return false;

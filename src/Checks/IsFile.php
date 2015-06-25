@@ -54,7 +54,7 @@ class IsFile extends BaseFilenameCheck
      *         TRUE if the path is a file on disk
      *         FALSE otherwise
      */
-    public static function checkFilename($path)
+    public static function checkString($path)
     {
         if (!is_file($path)) {
             return false;
