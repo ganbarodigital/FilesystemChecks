@@ -43,7 +43,7 @@
 
 namespace GanbaroDigital\Filesystem\Matchers;
 
-use GanbaroDigital\Filesystem\Checks\IsFolder;
+use GanbaroDigital\Filesystem\Checks\IsFile;
 use GanbaroDigital\Filesystem\DataTypes\FilesystemPathData;
 
 use RegexIterator;
