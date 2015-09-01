@@ -34,14 +34,14 @@
  * POSSIBILITY OF SUCH DAMAGE.
  *
  * @category  Libraries
- * @package   Filesystem/Checks
+ * @package   Filesystem/ValueBuilders
  * @author    Stuart Herbert <stuherbert@ganbarodigital.com>
  * @copyright 2015-present Ganbaro Digital Ltd www.ganbarodigital.com
  * @license   http://www.opensource.org/licenses/bsd-license.php  BSD License
  * @link      http://code.ganbarodigital.com/php-file-system
  */
 
-namespace GanbaroDigital\Filesystem\Checks;
+namespace GanbaroDigital\Filesystem\ValueBuilders;
 
 use GanbaroDigital\Filesystem\Exceptions\E4xx_InvalidPath;
 use GanbaroDigital\Filesystem\Exceptions\E4xx_UnsupportedType;
