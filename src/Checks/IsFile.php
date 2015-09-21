@@ -43,24 +43,44 @@
 
 namespace GanbaroDigital\Filesystem\Checks;
 
-class IsFile extends BaseFilenameCheck
+use GanbaroDigital\Filesystem\Exceptions\E4xx_UnsupportedType;
+use GanbaroDigital\Reflection\Requirements\RequireStringy;
+
+class IsFile
 {
     /**
      * is the path a file on disk?
      *
-     * @param  string $path
+     * @param  mixed $path
      *         path to the file to check
      * @return boolean
      *         TRUE if the path is a file on disk
      *         FALSE otherwise
      */
-    public static function checkString($path)
+    public static function check($path)
     {
+        // defensive programming!!
+        RequireStringy::check($path, E4xx_UnsupportedType::class);
+
         if (!is_file($path)) {
             return false;
         }
 
         // if we get here, then we are happy
         return true;
+    }
+
+    /**
+     * is the path a file on disk?
+     *
+     * @param  mixed $path
+     *         path to the file to check
+     * @return boolean
+     *         TRUE if the path is a file on disk
+     *         FALSE otherwise
+     */
+    public function __invoke($path)
+    {
+        return self::check($path);
     }
 }

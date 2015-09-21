@@ -43,23 +43,43 @@
 
 namespace GanbaroDigital\Filesystem\Checks;
 
-class IsFolder extends BaseFilenameCheck
+use GanbaroDigital\Filesystem\Exceptions\E4xx_UnsupportedType;
+use GanbaroDigital\Reflection\Requirements\RequireStringy;
+
+class IsFolder
 {
     /**
      * is the filename actually a folder?
      *
-     * @param  string $filename
+     * @param  mixed $path
      *         the filename to check
      * @return boolean
      *         TRUE if the filename is a folder
      *         FALSE otherwise
      */
-    public static function checkString($filename)
+    public static function check($path)
     {
-        if (!is_dir($filename)) {
+        // defensive programming!!
+        RequireStringy::check($path, E4xx_UnsupportedType::class);
+
+        if (!is_dir($path)) {
             return false;
         }
 
         return true;
+    }
+
+    /**
+     * is the filename actually a folder?
+     *
+     * @param  string $path
+     *         the filename to check
+     * @return boolean
+     *         TRUE if the filename is a folder
+     *         FALSE otherwise
+     */
+    public function __invoke($path)
+    {
+        return self::check($path);
     }
 }

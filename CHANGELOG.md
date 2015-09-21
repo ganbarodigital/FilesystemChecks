@@ -4,6 +4,9 @@
 
 ### Fixes
 
+* Checks - now all support the standard `::check()` method
+* Checks - dropped the interface for now (needs rethinking)
+* Checks - stricter type checking
 * E4xx_UnsupportedType - typo in `use` statement
 
 ### Test Fixes
