@@ -41,7 +41,7 @@
  * @link      http://code.ganbarodigital.com/php-file-system
  */
 
-namespace GanbaroDigital\FileSystem\Exceptions;
+namespace GanbaroDigital\Filesystem\Exceptions;
 
 use GanbaroDigital\Exceptions\Traits\UnsupportedType;
 
