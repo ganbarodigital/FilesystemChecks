@@ -43,26 +43,30 @@
 
 namespace GanbaroDigital\Filesystem\Checks;
 
-use GanbaroDigital\Filesystem\DataTypes\FilesystemPathData;
+use GanbaroDigital\Filesystem\Exceptions\E4xx_UnsupportedType;
+use GanbaroDigital\Reflection\Requirements\RequireStringy;
 
-class IsValidJsonFile extends BaseFilenameCheck
+class IsValidJsonFile
 {
     /**
      * is the given filename pointing at valid JSON?
      *
-     * @param  string $filename
+     * @param  mixed $path
      *         the filename to inspect
      * @return boolean
      *         TRUE if the file is valid JSON
      *         FALSE otherwise
      */
-    public static function checkString($filename)
+    public static function check($path)
     {
-        if (!is_file($filename)) {
+        // defensive programming!!
+        RequireStringy::check($path, E4xx_UnsupportedType::class);
+
+        if (!IsReadableFile::check($path)) {
             return false;
         }
 
-        $contents = file_get_contents($filename);
+        $contents = file_get_contents($path);
         if (empty($contents)) {
             return false;
         }
@@ -73,5 +77,19 @@ class IsValidJsonFile extends BaseFilenameCheck
         }
 
         return true;
+    }
+
+    /**
+     * is the given filename pointing at valid JSON?
+     *
+     * @param  string $path
+     *         the filename to inspect
+     * @return boolean
+     *         TRUE if the file is valid JSON
+     *         FALSE otherwise
+     */
+    public function __invoke($path)
+    {
+        return self::check($path);
     }
 }

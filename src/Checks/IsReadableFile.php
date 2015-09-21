@@ -43,8 +43,33 @@
 
 namespace GanbaroDigital\Filesystem\Checks;
 
-class IsReadableFile extends BaseFilenameCheck
+use GanbaroDigital\Filesystem\Exceptions\E4xx_UnsupportedType;
+use GanbaroDigital\Reflection\Requirements\RequireStringy;
+
+class IsReadableFile
 {
+    /**
+     * is the path a readable file on disk?
+     *
+     * @param  mixed $path
+     *         path to the file to check
+     * @return boolean
+     *         TRUE if the path is a readable file on disk
+     *         FALSE otherwise
+     */
+    public static function check($path)
+    {
+        // defensive programming!!
+        RequireStringy::check($path, E4xx_UnsupportedType::class);
+
+        if (!is_readable($path)) {
+            return false;
+        }
+
+        // if we get here, then we are happy
+        return true;
+    }
+
     /**
      * is the path a readable file on disk?
      *
@@ -54,13 +79,8 @@ class IsReadableFile extends BaseFilenameCheck
      *         TRUE if the path is a readable file on disk
      *         FALSE otherwise
      */
-    public static function checkString($path)
+    public function __invoke($path)
     {
-        if (!is_readable($path)) {
-            return false;
-        }
-
-        // if we get here, then we are happy
-        return true;
+        return self::check($path);
     }
 }

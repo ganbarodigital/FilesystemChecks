@@ -45,36 +45,10 @@ namespace GanbaroDigital\Filesystem\Checks;
 
 use GanbaroDigital\Filesystem\Exceptions\E4xx_UnsupportedType;
 use GanbaroDigital\Filesystem\ValueBuilders\BuildAbsolutePath;
-use GanbaroDigital\Reflection\ValueBuilders\FirstMethodMatchingType;
+use GanbaroDigital\Reflection\Requirements\RequireStringy;
 
-class IsAbsoluteFolder extends BaseFilenameCheck
+class IsAbsoluteFolder
 {
-    /**
-     * is the filename actually the absolute path to a folder?
-     *
-     * @param  string $filename
-     *         the filename to check
-     * @return boolean
-     *         TRUE if the filename is a folder
-     *         FALSE otherwise
-     */
-    public static function checkString($filename)
-    {
-        // if it is not a folder, no point in checking any further
-        if (!is_dir($filename)) {
-            return false;
-        }
-
-        // check for absoluteness
-        $absDir = BuildAbsolutePath::fromString($filename);
-        if ($filename !== $absDir) {
-            return false;
-        }
-
-        // if we get here, we are happy
-        return true;
-    }
-
     /**
      * is the filename actually the absolute path to a folder?
      *
@@ -86,8 +60,22 @@ class IsAbsoluteFolder extends BaseFilenameCheck
      */
     public static function check($filename)
     {
-        $method = FirstMethodMatchingType::fromMixed($filename, self::class, 'check', E4xx_UnsupportedType::class);
-        return self::$method($filename);
+        // defensive programming!
+        RequireStringy::check($filename, E4xx_UnsupportedType::class);
+
+        // if it is not a folder, no point in checking any further
+        if (!is_dir((string)$filename)) {
+            return false;
+        }
+
+        // check for absoluteness
+        $absDir = BuildAbsolutePath::fromString((string)$filename);
+        if ($filename !== $absDir) {
+            return false;
+        }
+
+        // if we get here, we are happy
+        return true;
     }
 
     /**

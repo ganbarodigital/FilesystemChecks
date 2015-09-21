@@ -34,28 +34,39 @@
  * POSSIBILITY OF SUCH DAMAGE.
  *
  * @category  Libraries
- * @package   Filesystem/Checks
+ * @package   Filesystem/Exceptions
  * @author    Stuart Herbert <stuherbert@ganbarodigital.com>
  * @copyright 2015-present Ganbaro Digital Ltd www.ganbarodigital.com
  * @license   http://www.opensource.org/licenses/bsd-license.php  BSD License
  * @link      http://code.ganbarodigital.com/php-file-system
  */
 
-namespace GanbaroDigital\Filesystem\Checks;
+namespace GanbaroDigital\Filesystem\Exceptions;
 
-use GanbaroDigital\Filesystem\DataTypes\FilesystemPathData;
+use PHPUnit_Framework_TestCase;
+use RuntimeException;
 
-interface FilesystemPathCheck
+/**
+ * @coversDefaultClass GanbaroDigital\Filesystem\Exceptions\Exxx_FilesystemException
+ */
+class Exxx_FilesystemExceptionTest extends PHPUnit_Framework_TestCase
 {
     /**
-     * does the provided filesystem data meet the requirements for this
-     * specification?
-     *
-     * @param  FilesystemPathData $fsData
-     *         the data to inspect
-     * @return boolean
-     *         TRUE if the filesystem data meets the requirements
-     *         FALSE otherwise
+     * @covers ::__construct
      */
-    public static function checkFilesystemPathData(FilesystemPathData $fsData);
+    public function testCanInstantiate()
+    {
+        // ----------------------------------------------------------------
+        // setup your test
+
+        $expectedCode = 100;
+        $expectedMessage = "hello cruel world";
+
+        $obj = new Exxx_FilesystemException($expectedCode, $expectedMessage);
+
+        // ----------------------------------------------------------------
+        // test the results
+
+        $this->assertTrue($obj instanceof Exxx_FilesystemException);
+    }
 }
