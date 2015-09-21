@@ -2,6 +2,10 @@
 
 ## develop branch
 
+Nothing yet.
+
+## 0.2.0 - Mon Sep 21 2015
+
 ### Fixes
 
 * Checks - now all support the standard `::check()` method
