@@ -2,7 +2,13 @@
 
 ## develop branch
 
-Nothing yet.
+### New
+
+* Exceptions\E4xx_NotAbsoluteFolder - added
+
+### Fixes
+
+* Requirements\RequireAbsoluteFolderOrNull - throws clearer exceptions
 
 ## 0.2.0 - Mon Sep 21 2015
 
