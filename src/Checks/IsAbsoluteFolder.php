@@ -70,7 +70,7 @@ class IsAbsoluteFolder
 
         // check for absoluteness
         $absDir = BuildAbsolutePath::fromString((string)$filename);
-        if ($filename !== $absDir) {
+        if ($filename !== $absDir && $filename{0} !== '/') {
             return false;
         }
 

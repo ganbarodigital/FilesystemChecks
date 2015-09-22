@@ -9,6 +9,7 @@
 ### Fixes
 
 * Requirements\RequireAbsoluteFolderOrNull - throws clearer exceptions
+* Requirements\RequireAbsoluteFolderOrNull - handle fake /tmp et al on OSX
 
 ## 0.2.0 - Mon Sep 21 2015
 
