@@ -2,6 +2,10 @@
 
 ## develop branch
 
+Nothing yet.
+
+## 0.2.1 - Tue Sep 22 2015
+
 ### New
 
 * Exceptions\E4xx_NotAbsoluteFolder - added
