@@ -4,6 +4,17 @@
 
 Nothing yet.
 
+## 0.2.1 - Tue Sep 22 2015
+
+### New
+
+* Exceptions\E4xx_NotAbsoluteFolder - added
+
+### Fixes
+
+* Requirements\RequireAbsoluteFolderOrNull - throws clearer exceptions
+* Requirements\RequireAbsoluteFolderOrNull - handle fake /tmp et al on OSX
+
 ## 0.2.0 - Mon Sep 21 2015
 
 ### Fixes

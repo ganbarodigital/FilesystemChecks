@@ -34,71 +34,29 @@
  * POSSIBILITY OF SUCH DAMAGE.
  *
  * @category  Libraries
- * @package   Filesystem/Requirements
+ * @package   Filesystem/Exceptions
  * @author    Stuart Herbert <stuherbert@ganbarodigital.com>
  * @copyright 2015-present Ganbaro Digital Ltd www.ganbarodigital.com
  * @license   http://www.opensource.org/licenses/bsd-license.php  BSD License
  * @link      http://code.ganbarodigital.com/php-file-system
  */
 
-namespace GanbaroDigital\Filesystem\Requirements;
+namespace GanbaroDigital\Filesystem\Exceptions;
 
-use GanbaroDigital\Defensive\Requirements\RequireAnyOneOf;
-use GanbaroDigital\Filesystem\Checks\IsAbsoluteFolder;
-use GanbaroDigital\Filesystem\Checks\IsFolder;
-use GanbaroDigital\Filesystem\Exceptions\E4xx_InvalidPath;
-use GanbaroDigital\Filesystem\Exceptions\E4xx_NotAbsoluteFolder;
-use GanbaroDigital\Filesystem\Exceptions\E4xx_UnsupportedType;
-use GanbaroDigital\Reflection\Checks\IsStringy;
-use GanbaroDigital\Reflection\Checks\IsNull;
-
-class RequireAbsoluteFolderOrNull
+class E4xx_NotAbsoluteFolder extends E4xx_FilesystemException
 {
     /**
-     * throws an exception if $item isn't an absolute path to a folder,
-     * and it isn't NULL
+     * exception thrown when we have been given a path that is not an
+     * absolute path
      *
-     * @param  string|null $item
-     *         the folder path to examine
-     * @return void
-     *
-     * @throws E4xx_UnsupportedType
+     * @param string  $path
+     *        the filesystem path that is invalid
      */
-    public static function check($item)
+    public function __construct($path)
     {
-        // defensive programming!!
-        static $requirements = [
-            [ IsNull::class, 'check' ],
-            [ IsStringy::class, 'check' ]
-        ];
+        $msg = "Path '{$path}' is not an absolute path to a folder";
 
-        RequireAnyOneOf::check($requirements, [$item], E4xx_UnsupportedType::class);
-
-        if ($item === null) {
-            return;
-        }
-
-        // make sure we have what we need
-        if (!IsFolder::check($item)) {
-            throw new E4xx_InvalidPath($item);
-        }
-        if (!IsAbsoluteFolder::check($item)) {
-            throw new E4xx_NotAbsoluteFolder($item);
-        }
-    }
-
-    /**
-     * throws an exception if $item isn't an absolute path to a folder,
-     * and it isn't NULL
-     *
-     * @param  string|null $item
-     *         the folder path to examine
-     * @return void
-     *
-     * @throws E4xx_UnsupportedType
-     */
-    public function __invoke($item)
-    {
-        self::check($item);
+        // all done
+        parent::__construct(400, $msg);
     }
 }
