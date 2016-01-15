@@ -4,6 +4,14 @@
 
 Nothing yet.
 
+## 0.3.0 - Fri Jan 15 2015
+
+### New
+
+* Added support for requiring a readable file
+  * Added `GanbaroDigital\Filesystem\Requirements\RequireReadableFile`
+  * Added `GanbaroDigital\Filesystem\Exceptions\E4xx_FileIsNotReadable`
+
 ## 0.2.1 - Tue Sep 22 2015
 
 ### New
