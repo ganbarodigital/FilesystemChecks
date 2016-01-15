@@ -4,6 +4,15 @@
 
 Nothing yet.
 
+## 0.4.0 - Fri Jan 15 2015
+
+### New
+
+* Added support for checking for / requiring an executable file
+  * Added `GanbaroDigital\Filesystem\Checks\IsExecutableFile`
+  * Added `GanbaroDigital\Filesystem\Exceptions\E4xx_FileIsNotExecutable`
+  * Added `GanbaroDigital\Filesystem\Requirements\RequireExecutableFile`
+
 ## 0.3.0 - Fri Jan 15 2015
 
 ### New
