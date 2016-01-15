@@ -2,6 +2,10 @@
 
 ## develop branch
 
+Nothing yet.
+
+## 0.4.0 - Fri Jan 15 2015
+
 ### New
 
 * Added support for checking for / requiring an executable file
