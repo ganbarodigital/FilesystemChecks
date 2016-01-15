@@ -4,6 +4,8 @@
 
 Nothing yet.
 
+## 0.3.0 - Fri Jan 15 2015
+
 ### New
 
 * Added support for requiring a readable file
